@@ -11,17 +11,16 @@ GpsStorage::GpsStorage()
 	
 }
 
-void GpsStorage::setCoordinates(double p_latitude, double p_longitude)
+void GpsStorage::setData(double p_latitude, double p_longitude,int p_hour,int p_minute, int p_second)
 {
 	m_latitude = p_latitude;
 	m_longitude = p_longitude;
-}
-
-void GpsStorage::setTime(int p_hour,int p_minute,int p_second){
 	m_hour = p_hour;
 	m_minute = p_minute;
 	m_second = p_second;
 }
+
+
 
 void GpsStorage::setFix(bool p_valid)
 {

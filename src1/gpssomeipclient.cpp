@@ -4,10 +4,7 @@
 
 #define SAMPLE_SERVICE_ID 0x1234
 #define SAMPLE_INSTANCE_ID 0x5678
-
-#define SAMPLE_METHOD_ID 0x0400
-#define SAMPLE_METHOD_ID0 0x0420
-#define SAMPLE_METHOD_ID1 0x0421
+#define SAMPLE_METHOD_ID 0x0421
 
 GpsSomeIpClient::GpsSomeIpClient()
 	: m_listener(nullptr)
@@ -46,37 +43,20 @@ void GpsSomeIpClient::requestCoordinates()
 	request = vsomeip::runtime::get()->create_request();
 	request->set_service(SAMPLE_SERVICE_ID);
 	request->set_instance(SAMPLE_INSTANCE_ID);
-	request->set_method(SAMPLE_METHOD_ID0);
+	request->set_method(SAMPLE_METHOD_ID);
 	
 //	std::shared_ptr< vsomeip::payload > its_payload = vsomeip::runtime::get()->create_payload();
 //	its_payload->set_data(its_payload_data);
 //	request->set_payload(its_payload);
 	app->send(request);
 }
-void GpsSomeIpClient::requestTime()
-{
-	if (m_serviceAvailable == false)
-	{
-		return;
-	}
-	
-	std::shared_ptr< vsomeip::message > request;
-	request = vsomeip::runtime::get()->create_request();
-	request->set_service(SAMPLE_SERVICE_ID);
-	request->set_instance(SAMPLE_INSTANCE_ID);
-	request->set_method(SAMPLE_METHOD_ID1);
-	
-//	std::shared_ptr< vsomeip::payload > its_payload = vsomeip::runtime::get()->create_payload();
-//	its_payload->set_data(its_payload_data);
-//	request->set_payload(its_payload);
-	app->send(request);
-}
+
 void GpsSomeIpClient::onMessageReceived(const std::shared_ptr<vsomeip::message> &_response)
 {
 	std::shared_ptr<vsomeip::payload> its_payload = _response->get_payload();
   
-	tCoordinates* l_coordinates = (tCoordinates*) its_payload->get_data();
-	m_listener->onCoordinatesReceived(l_coordinates->lat, l_coordinates->lon);
+	tData* l_data = (tData*) its_payload->get_data();
+	m_listener->onDataReceived(l_data->lat, l_data->lon,l_data->hour,l_data->minute,l_data->second);
 }
 
 void GpsSomeIpClient::onAvailability(vsomeip_v3::service_t _service, vsomeip_v3::instance_t _instance, bool _is_available)

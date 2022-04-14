@@ -10,9 +10,9 @@ GpsController::GpsController(GpsSomeIpClient *p_client, const std::string& p_log
 	assert(m_client != nullptr);
 }
 
-void GpsController::onCoordinatesReceived(double p_lat, double p_lon)
+void GpsController::onDataReceived(double p_lat, double p_lon,int p_hour,int p_minute,int p_second)
 {
-	std::cout << "Coordinates received: " << p_lat << ", " << p_lon << std::endl;
+	std::cout << "Data received: " << p_lat << ", " << p_lon << std::endl;
 	m_logFile << p_lat << ", " << p_lon << std::endl;
 }
 
@@ -38,10 +38,8 @@ void GpsController::task()
 	while (true)
 	{
 		std::this_thread::sleep_for (std::chrono::milliseconds(3000));
-		std::cout << "Requesting cordinates" << std::endl;
+		std::cout << "Requesting data" << std::endl;
 		m_client->requestCoordinates();
-		std::cout << "Requesting time" << std::endl;
-		m_client->requestTime();
 		
 	}
 	m_logFile.close();

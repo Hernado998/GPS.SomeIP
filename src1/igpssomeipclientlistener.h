@@ -7,7 +7,7 @@ public:
 	IGpsSomeIpClientListener() = default;
 	virtual ~IGpsSomeIpClientListener() {}
 	
-	virtual void onCoordinatesReceived(double p_lat, double p_lon) = 0;
+	virtual void onDataReceived(double p_lat, double p_lon,int p_hour,int p_minute,int p_second) = 0;
 	virtual void onFixStatusChanged(bool p_valid) = 0;
 };
 

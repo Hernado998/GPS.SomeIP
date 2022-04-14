@@ -10,7 +10,7 @@ class GpsController : public IGpsSomeIpClientListener
 {
 public:
 	GpsController(GpsSomeIpClient* p_client, const std::string& p_logFile);
-	void onCoordinatesReceived(double p_lat, double p_lon) override;
+	void onDataReceived(double p_lat, double p_lon,int p_hour,int p_minute,int p_second) override;
 	void onFixStatusChanged(bool p_valid) override;
 	void run();
 	

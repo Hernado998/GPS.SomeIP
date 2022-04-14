@@ -7,8 +7,7 @@ public:
 	GpsStorage();
 	
 public:
-	void setCoordinates(double p_latitude, double p_longitude);
-	void setTime(int p_hour,int p_minute, int second);
+	void setData(double p_latitude, double p_longitude,int p_hour,int p_minute, int p_second);
 	void setFix(bool p_valid);
 	double getLatitude();
 	bool getFix();
