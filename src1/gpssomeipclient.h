@@ -13,15 +13,23 @@ class GpsSomeIpClient
 public:
 	GpsSomeIpClient();
 	
+	void changeID(int id, shared_ptr< vsomeip::message > request);
+
 	void run();
 	void init();
 	void setListener(IGpsSomeIpClientListener* p_listener);
 	void requestCoordinates();
+	void requestTime();
 	
 private:
 	struct tCoordinates {
 		double lat;
 		double lon;
+	};
+	struct tTime {
+		int hour;
+		int minute;
+		int seconde;
 	};
 	
 	void onMessageReceived(const std::shared_ptr<vsomeip::message> &_response);

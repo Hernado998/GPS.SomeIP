@@ -6,7 +6,8 @@
 
 #define SAMPLE_SERVICE_ID 0x1234
 #define SAMPLE_INSTANCE_ID 0x5678
-#define SAMPLE_METHOD_ID 0x0421
+#define SAMPLE_METHOD_ID0 0x0420
+#define SAMPLE_METHOD_ID1 0x0421
 
 struct tCoordinates {
 	double lat;
@@ -26,7 +27,8 @@ void GpsService::init()
 {
 	app = vsomeip::runtime::get()->create_application("World");
 	app->init();
-	app->register_message_handler(SAMPLE_SERVICE_ID, SAMPLE_INSTANCE_ID, SAMPLE_METHOD_ID, std::bind(&GpsService::getCoordinates, this, std::placeholders::_1));
+	app->register_message_handler(SAMPLE_SERVICE_ID, SAMPLE_INSTANCE_ID, SAMPLE_METHOD_ID0, std::bind(&GpsService::getCoordinates, this, std::placeholders::_1));
+	app->register_message_handler(SAMPLE_SERVICE_ID, SAMPLE_INSTANCE_ID, SAMPLE_METHOD_ID1, std::bind(&GpsService::getTime, this, std::placeholders::_1));
 	app->offer_service(SAMPLE_SERVICE_ID, SAMPLE_INSTANCE_ID);
 }
 
