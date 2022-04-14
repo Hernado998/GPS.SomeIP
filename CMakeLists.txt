@@ -37,12 +37,12 @@ add_executable(service-gps
     ${CMAKE_CURRENT_LIST_DIR}/src/main.cpp
 )
 add_executable(client-gps
-    ${CMAKE_CURRENT_LIST_DIR}/src/gpssomeipclient.h
-    ${CMAKE_CURRENT_LIST_DIR}/src/gpssomeipclient.cpp
-    ${CMAKE_CURRENT_LIST_DIR}/src/gpscontroller.h
-    ${CMAKE_CURRENT_LIST_DIR}/src/gpscontroller.cpp
-    ${CMAKE_CURRENT_LIST_DIR}/src/igpssomeipclientlistener.h
-    ${CMAKE_CURRENT_LIST_DIR}/src/main.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/src1/gpssomeipclient.h
+    ${CMAKE_CURRENT_LIST_DIR}/src1/gpssomeipclient.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/src1/gpscontroller.h
+    ${CMAKE_CURRENT_LIST_DIR}/src1/gpscontroller.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/src1/igpssomeipclientlistener.h
+    ${CMAKE_CURRENT_LIST_DIR}/src1/main.cpp
 )
 target_include_directories(service-gps PRIVATE ${LIB_NMEA_DIR}/include)
 target_link_libraries(service-gps vsomeip3 ${VSOMEIP_NAME} ${Boost_LIBRARIES} ${DL_LIBRARY} gps ${LIB_NMEA})
