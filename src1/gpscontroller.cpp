@@ -39,7 +39,7 @@ void GpsController::task()
 	{
 		std::this_thread::sleep_for (std::chrono::milliseconds(3000));
 		std::cout << "Requesting data" << std::endl;
-		m_client->requestCoordinates();
+		m_client->requestData();
 		
 	}
 	m_logFile.close();
