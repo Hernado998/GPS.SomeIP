@@ -16,7 +16,7 @@ public:
 	void run();
 	void init();
 	void setListener(IGpsSomeIpClientListener* p_listener);
-	void requestCoordinates();
+	void requestData();
 	
 private:
 	struct tData {

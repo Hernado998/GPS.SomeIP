@@ -32,7 +32,7 @@ void GpsSomeIpClient::setListener(IGpsSomeIpClientListener *p_listener)
 	m_listener = p_listener;
 }
 
-void GpsSomeIpClient::requestCoordinates()
+void GpsSomeIpClient::requestData()
 {
 	if (m_serviceAvailable == false)
 	{
