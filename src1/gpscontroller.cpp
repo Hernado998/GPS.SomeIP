@@ -12,8 +12,8 @@ GpsController::GpsController(GpsSomeIpClient *p_client, const std::string& p_log
 
 void GpsController::onDataReceived(double p_lat, double p_lon,int p_hour,int p_minute,int p_second)
 {
-	std::cout << "Data received: " << p_lat << ", " << p_lon << std::endl;
-	m_logFile << p_lat << ", " << p_lon << std::endl;
+	std::cout << "Data received: " << p_lat << ", " << p_lon <<"//"<<p_hour<<":"<<p_minute<<":"<<p_second<< std::endl;
+	m_logFile << p_lat << ", " << p_lon <<"//"<<p_hour<<":"<<p_minute<<":"<<p_second<< std::endl;
 }
 
 void GpsController::onFixStatusChanged(bool p_valid)
