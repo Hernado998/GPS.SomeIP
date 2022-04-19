@@ -4,6 +4,8 @@
 #include <string.h>
 #include <thread>
 #include <assert.h>
+#include <fcntl.h>    /* For O_RDWR */
+#include <unistd.h>   /* For open(), creat() */
 
 
 GpsSocketReader::GpsSocketReader()
