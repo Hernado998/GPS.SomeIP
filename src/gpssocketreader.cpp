@@ -22,7 +22,7 @@ bool GpsSocketReader::connect()
 	char *source_server = NULL;
 	char *source_port = NULL;
 
-	if (gps_open(source_server, source_port, &gpsdata) != 0) {
+	if (open("/dev/ttyAMA0")) {
 		(void)fprintf(stderr,
 		  "gpspipe: could not connect to gpsd %s:%s, %s(%d)\n",
 		  source_server, source_port, strerror(errno), errno);
@@ -31,7 +31,6 @@ bool GpsSocketReader::connect()
 
 	unsigned int flags = WATCH_ENABLE | WATCH_NMEA;
 	char *source_device = NULL;
-    gps_stream(&gpsdata, flags, source_device);
 	
 	return true;
 }
