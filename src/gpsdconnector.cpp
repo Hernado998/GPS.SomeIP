@@ -13,7 +13,7 @@ void GpsdConnector::init()
 {
 	gps.onUpdate += [&](){
 		m_storage->setData(gps.fix.latitude, gps.fix.longitude,gps.fix.timestamp.hour,gps.fix.timestamp.min,gps.fix.timestamp.sec);
-		std::cout << "Setting data: " << gps.fix.timestamp.hour << ":" << gps.fix.timestamp.min << ":" << gps.fix.timestamp.sec << std::endl;
+		std::cout << "Setting data: " << gps.fix.latitude << ","<< gps.fix.longitude<<"//"<< gps.fix.timestamp.hour << ":" << gps.fix.timestamp.min << ":" << gps.fix.timestamp.sec << std::endl;
 		
 	};
 	gps.onLockStateChanged += [&](bool p_valid){
