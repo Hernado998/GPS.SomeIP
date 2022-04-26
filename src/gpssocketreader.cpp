@@ -66,7 +66,7 @@ bool GpsSocketReader::connect()
 	char *source_server = NULL;
 	char *source_port = NULL;
 	int fd;
-	if (fd=open("/dev/ttyAMA0",O_RDWR | O_NOCTTY | O_SYNC) != 0) {
+	if (fd=open("/dev/ttyAMA0",O_RDONLY) != 0) {
 		(void)fprintf(stderr,
 		  "gpspipe: could not connect to gpsd %s:%s, %s(%d)\n",
 		  source_server, source_port, strerror(errno), errno);
