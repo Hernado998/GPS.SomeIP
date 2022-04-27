@@ -4,11 +4,8 @@
 #include <string.h>
 #include <thread>
 #include <assert.h>
-#include <fcntl.h>    /* For O_RDWR */
-  /* For open(), creat() */
+#include <fcntl.h> 
 #include <errno.h>
-
-
 #include <termios.h>
 
 
@@ -66,7 +63,8 @@ bool GpsSocketReader::connect()
 	char *source_server = NULL;
 	char *source_port = NULL;
 	int fd;
-	if (fd=open("/dev/ttyAMA0",O_RDWR | O_NOCTTY | O_SYNC) != 0) {
+	fd=open("/dev/ttyAMA0",O_RDWR | O_NOCTTY | O_SYNC);
+	if (fd == -1) {
 		(void)fprintf(stderr,
 		  "gpspipe: could not connect to gpsd %s:%s, %s(%d)\n",
 		  source_server, source_port, strerror(errno), errno);
