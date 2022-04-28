@@ -22,7 +22,7 @@ include_directories(${VSOMEIP_INCLUDE_DIRS})
 
 find_package(PkgConfig) #finding pkg-config is a helper tool
 find_package( Boost 1.71 COMPONENTS system thread log REQUIRED )
-SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread -lc")   
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread -lc -DDISPLAY_STRING")   
 add_executable(service-gps
     ${CMAKE_CURRENT_LIST_DIR}/src/gpsdconnector.h
     ${CMAKE_CURRENT_LIST_DIR}/src/gpsdconnector.cpp
