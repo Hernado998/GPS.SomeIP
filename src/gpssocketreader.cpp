@@ -139,6 +139,7 @@ std::string GpsSocketReader::internalRead()
             buf[rdlen] = 0;
             printf("Read %d: \"%s\"\n", rdlen, buf);
 #else /* display hex */
+
             unsigned char   *p;
             printf("Read %d:", rdlen);
             for (p = buf; rdlen-- > 0; p++)
@@ -150,7 +151,7 @@ std::string GpsSocketReader::internalRead()
         } else {  /* rdlen == 0 */
             printf("Timeout from read\n");
         }  
-		             
+
 	int i = 0;
 	for (i = 0; i < r; i++) {
 		char c = buf[i];
