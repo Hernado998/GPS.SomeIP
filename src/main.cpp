@@ -13,7 +13,7 @@ int main() {
 	l_socket.init();
 	l_socket.run();
 
-	GpsService l_service(&l_storage);
-	l_service.init();
-	l_service.start();
+	//GpsService l_service(&l_storage);
+	//l_service.init();
+	//l_service.start();
 }
