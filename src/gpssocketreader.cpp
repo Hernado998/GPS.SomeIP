@@ -131,7 +131,7 @@ std::string GpsSocketReader::internalRead()
 		return "";
 	}
 	
-	char buf[256];
+	char buf[1000];
 	std::string l_ret;
 	r = read(fd, buf, sizeof(buf));
 	int i = 0;
@@ -139,7 +139,7 @@ std::string GpsSocketReader::internalRead()
 		char c = buf[i];
 		l_ret += c;
 	}
-	std::cout<<l_ret<<std::endl;
+	std::cout<<"internal read" +l_ret<<std::endl;
 	return l_ret;
 }
 
