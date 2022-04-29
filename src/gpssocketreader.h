@@ -16,7 +16,7 @@ public:
 	
 	
 public:
-	bool connect();
+	void connect();
 	void task();
 	std::string readLine();
 	std::string internalRead();

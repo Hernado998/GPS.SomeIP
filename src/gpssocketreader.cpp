@@ -72,18 +72,27 @@ void GpsSocketReader::init()
 	connect();
 }
 
-bool GpsSocketReader::connect()
+void GpsSocketReader::connect()
 {
-	char *portname = TERMINAL; 
+	char *portname = TERMINAL;
+    int fd;
     int wlen;
-	fd = open(portname, O_RDWR | O_NOCTTY | O_SYNC);
+    
+
+    fd = open(portname, O_RDWR | O_NOCTTY | O_SYNC);
     if (fd < 0) {
         printf("Error opening %s: %s\n", portname, strerror(errno));
-        return -1;
     }
     /*baudrate 115200, 8 bits, no parity, 1 stop bit */
     set_interface_attribs(fd, B9600);
-	do {
+    //set_mincount(fd, 0);                /* set to pure timed read */
+
+   
+    tcdrain(fd);    /* delay for output */
+
+
+    /* simple noncanonical input */
+    do {
         unsigned char buf[1000];
         int rdlen;
 
@@ -105,9 +114,9 @@ bool GpsSocketReader::connect()
             printf("Timeout from read\n");
         }               
         /* repeat read to get full message */
-		std::cout<<buf;
+	std::cout<<buf;
     } while (1);
-	return true;
+	
 }
 
 std::string GpsSocketReader::readLine()
