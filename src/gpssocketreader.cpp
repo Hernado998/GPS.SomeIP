@@ -208,10 +208,11 @@ void GpsSocketReader::task()
 			char c = buf[i];
 			l_line += c;
 		}
-		std::cout<<buf;
+		//std::cout<<buf;
 		if (l_line.size() == 0 || l_line[0] != '$')
 		{
 			continue;
+			std::cout<<buf;
 		}
 		
 		
