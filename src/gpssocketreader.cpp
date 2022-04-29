@@ -190,7 +190,7 @@ void GpsSocketReader::task()
         if (rdlen > 0) {
 #ifdef DISPLAY_STRING
             buf[rdlen] = 0;
-            printf("Read %d: \"%s\"\n", rdlen, buf);
+            //printf("Read %d: \"%s\"\n", rdlen, buf);
 #else /* display hex */
             unsigned char   *p;
             printf("Read %d:", rdlen);
