@@ -180,7 +180,7 @@ void GpsSocketReader::task()
 			continue;
 		}
 		
-		std::cout << l_line << std::endl;
+		std::cout << "task" +l_line << std::endl;
 		m_listener->onSentenceReceived(l_line);
 	}
 }

@@ -2,6 +2,7 @@
 #include "gpsstorage.h"
 #include "gpsservice.h"
 #include "gpssocketreader.h"
+#include <unistd.h>
 
 int main() {
 
@@ -12,6 +13,9 @@ int main() {
 	l_gpsd.init();
 	l_socket.init();
 	l_socket.run();
+	while(1){
+		usleep(1000);
+	}
 	return 0;
 	//GpsService l_service(&l_storage);
 	//l_service.init();
