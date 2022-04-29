@@ -163,9 +163,12 @@ std::string GpsSocketReader::internalRead()
 
 void GpsSocketReader::run()
 {
-	assert(m_listener != nullptr);
+	/*assert(m_listener != nullptr);
 	std::thread l_thread(&GpsSocketReader::task, this);
-	l_thread.detach();
+	l_thread.detach();*/
+	while(1){
+		task();
+	}
 }
 
 void GpsSocketReader::task()
@@ -174,13 +177,13 @@ void GpsSocketReader::task()
 	{
 		std::string l_line;
 		l_line = readLine();
-		
+		std::cout << "task" +l_line << std::endl;
 		if (l_line.size() == 0 || l_line[0] != '$')
 		{
 			continue;
 		}
 		
-		std::cout << "task" +l_line << std::endl;
+		
 		m_listener->onSentenceReceived(l_line);
 	}
 }
