@@ -122,7 +122,7 @@ std::string GpsSocketReader::internalRead()
     int r = 0;
 	char buf[256];
 	std::string l_ret;
-	r = (int)read(gpsdata.gps_fd, buf, sizeof(buf));
+	r = (int)read(fd, buf, sizeof(buf));
 	int i = 0;
 	for (i = 0; i < r; i++) {
 		char c = buf[i];
