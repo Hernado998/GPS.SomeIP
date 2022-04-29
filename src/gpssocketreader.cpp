@@ -146,6 +146,7 @@ void GpsSocketReader::task()
 {
 	while (true)
 	{
+        usleep(100000);
 		std::string l_line;
 		l_line = readLine();
 		if (l_line.size() == 0 || l_line[0] != '$')
