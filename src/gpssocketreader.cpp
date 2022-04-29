@@ -91,31 +91,7 @@ void GpsSocketReader::connect()
     tcdrain(fd);    /* delay for output */
 
 
-    /* simple noncanonical input */
-    do {
-        unsigned char buf[1000];
-        int rdlen;
-
-        rdlen = read(fd, buf, sizeof(buf) - 1);
-        if (rdlen > 0) {
-#ifdef DISPLAY_STRING
-            buf[rdlen] = 0;
-            printf("Read %d: \"%s\"\n", rdlen, buf);
-#else /* display hex */
-            unsigned char   *p;
-            printf("Read %d:", rdlen);
-            for (p = buf; rdlen-- > 0; p++)
-                printf(" 0x%x", *p);
-            printf("\n");
-#endif
-        } else if (rdlen < 0) {
-            printf("Error from read: %d: %s\n", rdlen, strerror(errno));
-        } else {  /* rdlen == 0 */
-            printf("Timeout from read\n");
-        }               
-        /* repeat read to get full message */
-	std::cout<<buf;
-    } while (1);
+    
 	
 }
 
@@ -205,19 +181,44 @@ void GpsSocketReader::run()
 
 void GpsSocketReader::task()
 {
-	while (true)
-	{
-		std::string l_line;
-		l_line = readLine();
-		std::cout << "task" +l_line << std::endl;
-		if (l_line.size() == 0 || l_line[0] != '$')
-		{
-			continue;
+	std::string l_line;
+	/* simple noncanonical input */
+    do {
+        unsigned char buf[1000];
+        int rdlen;
+
+        rdlen = read(fd, buf, sizeof(buf) - 1);
+        if (rdlen > 0) {
+#ifdef DISPLAY_STRING
+            buf[rdlen] = 0;
+            //printf("Read %d: \"%s\"\n", rdlen, buf);
+#else /* display hex */
+            unsigned char   *p;
+            printf("Read %d:", rdlen);
+            for (p = buf; rdlen-- > 0; p++)
+                printf(" 0x%x", *p);
+            printf("\n");
+#endif
+        } else if (rdlen < 0) {
+            printf("Error from read: %d: %s\n", rdlen, strerror(errno));
+        } else {  /* rdlen == 0 */
+            printf("Timeout from read\n");
+        }               
+        /* repeat read to get full message */
+		for (int i = 0; i < 1000; i++) {
+			char c = buf[i];
+			l_line += c;
 		}
-		
-		
-		m_listener->onSentenceReceived(l_line);
+	std::cout<<buf;
+	if (l_line.size() == 0 || l_line[0] != '$')
+	{
+		continue;
 	}
+		
+		
+	m_listener->onSentenceReceived(l_line);
+
+    } while (1);
 }
 
 void GpsSocketReader::setListener(IGpsSocketReaderListener *p_listener)

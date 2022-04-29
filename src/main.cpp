@@ -11,7 +11,7 @@ int main() {
 	GpsdConnector l_gpsd(&l_storage);
 	l_socket.setListener(&l_gpsd);
 	l_socket.init();
-	//l_socket.task();
+	l_socket.task();
 	return 0;
 	//GpsService l_service(&l_storage);
 	//l_service.init();
