@@ -166,9 +166,9 @@ void GpsSocketReader::run()
 	/*assert(m_listener != nullptr);
 	std::thread l_thread(&GpsSocketReader::task, this);
 	l_thread.detach();*/
-	while(1){
-		task();
-	}
+	
+	task();
+	
 }
 
 void GpsSocketReader::task()

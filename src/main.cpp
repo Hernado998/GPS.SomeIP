@@ -12,7 +12,7 @@ int main() {
 	l_socket.setListener(&l_gpsd);
 	l_gpsd.init();
 	l_socket.init();
-	l_socket.run();
+	l_socket.task();
 	return 0;
 	//GpsService l_service(&l_storage);
 	//l_service.init();
