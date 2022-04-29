@@ -119,53 +119,17 @@ std::string GpsSocketReader::readLine()
 
 std::string GpsSocketReader::internalRead()
 {
-	fd_set fds;	
-	struct timeval tv;
-	tv.tv_sec = 0;
-	tv.tv_usec = 100000;
-	FD_ZERO(&fds);
-	FD_SET(gpsdata.gps_fd, &fds);
-	errno = 0;
-	int r = 0;
-	r = select(gpsdata.gps_fd+1, &fds, NULL, NULL, &tv);
-	if (r == -1 && errno != EINTR)
-	{
-		std::cout << "ERROR: gpspipe select error " << strerror(errno) << " (" << errno << ")" << std::endl;
-		return "";
-	}
-	else if (r == 0)
-	{
-		return "";
-	}
-	
-	char buf[1000];
+    int r = 0;
+	char buf[256];
 	std::string l_ret;
-	rdlen = read(fd, buf, sizeof(buf) - 1);
-	if (rdlen > 0) {
-#ifdef DISPLAY_STRING
-            buf[rdlen] = 0;
-            printf("Read %d: \"%s\"\n", rdlen, buf);
-#else /* display hex */
-
-            unsigned char   *p;
-            printf("Read %d:", rdlen);
-            for (p = buf; rdlen-- > 0; p++)
-                printf(" 0x%x", *p);
-            printf("\n");
-#endif
-        } else if (rdlen < 0) {
-            printf("Error from read: %d: %s\n", rdlen, strerror(errno));
-        } else {  /* rdlen == 0 */
-            printf("Timeout from read\n");
-        }  
-
+	r = (int)read(gpsdata.gps_fd, buf, sizeof(buf));
 	int i = 0;
 	for (i = 0; i < r; i++) {
 		char c = buf[i];
 		l_ret += c;
 	}
-	std::cout<<buf<<std::endl;
 	return l_ret;
+
 }
 
 void GpsSocketReader::run()
@@ -180,47 +144,17 @@ void GpsSocketReader::run()
 
 void GpsSocketReader::task()
 {
-	std::string l_line;
-	/* simple noncanonical input */
-    do {
-        unsigned char buf[1000];
-        int rdlen;
-
-        rdlen = read(fd, buf, sizeof(buf) - 1);
-        if (rdlen > 0) {
-#ifdef DISPLAY_STRING
-            buf[rdlen] = 0;
-            //printf("Read %d: \"%s\"\n", rdlen, buf);
-#else /* display hex */
-            unsigned char   *p;
-            printf("Read %d:", rdlen);
-            for (p = buf; rdlen-- > 0; p++)
-                printf(" 0x%x", *p);
-            printf("\n");
-#endif
-        } else if (rdlen < 0) {
-            printf("Error from read: %d: %s\n", rdlen, strerror(errno));
-        } else {  /* rdlen == 0 */
-            printf("Timeout from read\n");
-        }               
-        /* repeat read to get full message */
-		for (int i = 0; i < 1000; i++) {
-			char c = buf[i];
-			l_line += c;
-		}
-		std::cout<<"this is buf "<<buf;
-		std::cout<<std::endl;
-		std::cout<<"this is line "<<l_line;
-		std::cout<<std::endl;
+	while (true)
+	{
+		std::string l_line;
+		l_line = readLine();
 		if (l_line.size() == 0 || l_line[0] != '$')
 		{
 			continue;
-		}
-		
-		
+		}		
+		std::cout << l_line << std::endl;
 		m_listener->onSentenceReceived(l_line);
-
-    } while (1);
+	}
 }
 
 void GpsSocketReader::setListener(IGpsSocketReaderListener *p_listener)
