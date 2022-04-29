@@ -32,7 +32,7 @@ NMEAParseError::~NMEAParseError()
 {}
 
 std::string NMEAParseError::what(){
-	//return message;
+	return message;
 }
 
 
@@ -257,7 +257,7 @@ void NMEAParser::readSentence(std::string cmd){
 	}
 	catch (std::exception& e){
 		string s = " >> NMEA Parser Internal Error: Indexing error?... ";
-		throw std::runtime_error(s + e.what());
+		//throw std::runtime_error(s + e.what());
 	}
 	cout.flags(oldflags);  //reset
 
