@@ -15,7 +15,7 @@ public:
 	void setListener(IGpsSocketReaderListener* p_listener);
 	
 	
-private:
+public:
 	bool connect();
 	void task();
 	std::string readLine();
