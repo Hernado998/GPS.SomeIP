@@ -120,7 +120,7 @@ std::string GpsSocketReader::readLine()
 std::string GpsSocketReader::internalRead()
 {
     int r = 0;
-	char buf[256];
+	char buf[1000];
 	std::string l_ret;
 	r = (int)read(fd, buf, sizeof(buf));
 	int i = 0;
