@@ -32,7 +32,7 @@ NMEAParseError::~NMEAParseError()
 {}
 
 std::string NMEAParseError::what(){
-	return message;
+	//return message;
 }
 
 
