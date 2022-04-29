@@ -75,7 +75,6 @@ void GpsSocketReader::init()
 void GpsSocketReader::connect()
 {
 	char *portname = TERMINAL;
-    int fd;
     int wlen;
     
 
@@ -191,7 +190,7 @@ void GpsSocketReader::task()
         if (rdlen > 0) {
 #ifdef DISPLAY_STRING
             buf[rdlen] = 0;
-            //printf("Read %d: \"%s\"\n", rdlen, buf);
+            printf("Read %d: \"%s\"\n", rdlen, buf);
 #else /* display hex */
             unsigned char   *p;
             printf("Read %d:", rdlen);
@@ -209,14 +208,14 @@ void GpsSocketReader::task()
 			char c = buf[i];
 			l_line += c;
 		}
-	std::cout<<buf;
-	if (l_line.size() == 0 || l_line[0] != '$')
-	{
-		continue;
-	}
+		std::cout<<buf;
+		if (l_line.size() == 0 || l_line[0] != '$')
+		{
+			continue;
+		}
 		
 		
-	m_listener->onSentenceReceived(l_line);
+		m_listener->onSentenceReceived(l_line);
 
     } while (1);
 }
