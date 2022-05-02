@@ -151,7 +151,8 @@ void GpsSocketReader::task()
 		try{
 			//usleep(100000);
 			std::string l_line;
-			l_line = readLine();
+			//l_line = readLine();
+			l_line ="$GPGGA,082819.00,4503.93047,N,00741.21221,E,1,03,3.02,320.5,M,47.2,M,,*5A";
 			if (l_line.size() == 0 || l_line[0] != '$')
 			{
 				continue;
