@@ -34,6 +34,8 @@ add_executable(service-gps
     ${CMAKE_CURRENT_LIST_DIR}/src/gpsstorage.cpp
     ${CMAKE_CURRENT_LIST_DIR}/src/igpssocketreaderlistener.h
     ${CMAKE_CURRENT_LIST_DIR}/src/igpsstoragelistener.h
+    ${CMAKE_CURRENT_LIST_DIR}/src/bbox.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/src/bbox.h
     ${CMAKE_CURRENT_LIST_DIR}/src/main.cpp
 )
 add_executable(client-gps
