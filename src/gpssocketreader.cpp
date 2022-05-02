@@ -6,7 +6,9 @@
 #include <assert.h>
 #include <fcntl.h> 
 #include <errno.h>
+#include <exception>
 #include <termios.h>
+using namespace std;
 #define TERMINAL    "/dev/ttyAMA0"
 int fd;
 int rdlen;
@@ -157,8 +159,8 @@ void GpsSocketReader::task()
 			std::cout << l_line << std::endl;
 			m_listener->onSentenceReceived(l_line);
 		}
-		catch(int e){
-			std::cout << "An exception occurred. Exception Nr. " << e << '\n';
+		catch(exception& e){
+			cout << e.what() << '\n';
 		}
 	
 	}
