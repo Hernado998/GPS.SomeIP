@@ -134,11 +134,11 @@ std::string GpsSocketReader::internalRead()
 
 void GpsSocketReader::run()
 {
-	/*assert(m_listener != nullptr);
+	assert(m_listener != nullptr);
 	std::thread l_thread(&GpsSocketReader::task, this);
-	l_thread.detach();*/
+	l_thread.detach();
 	
-	task();
+	//task();
 	
 }
 
