@@ -31,6 +31,6 @@ void GpsdConnector::init()
 
 void GpsdConnector::onSentenceReceived(const std::string &p_sentence)
 {
-	std::cout<<"gpsd connector "<<p_sentence<<std::endl;
+	//std::cout<<"gpsd connector "<<p_sentence<<std::endl;
 	parser.readLine(p_sentence);
 }
