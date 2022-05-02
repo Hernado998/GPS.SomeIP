@@ -11,11 +11,11 @@ int main() {
 	GpsdConnector l_gpsd(&l_storage);
 	l_socket.setListener(&l_gpsd);
 	l_socket.init();
-	l_socket.task();
+	l_socket.run();
 
 
-	//GpsService l_service(&l_storage);
-	//l_service.init();
-	//l_service.start();
+	GpsService l_service(&l_storage);
+	l_service.init();
+	l_service.start();
 	return 0;
 }
