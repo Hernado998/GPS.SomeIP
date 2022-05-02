@@ -5,7 +5,7 @@
 #include "gpsstorage.h"
 #include "nmeaparse/nmea.h"
 #include "igpssocketreaderlistener.h"
-
+#include <iostream>
 
 
 class GpsdConnector : public IGpsSocketReaderListener

@@ -149,7 +149,7 @@ void GpsSocketReader::task()
 	while (true)
 	{
 		try{
-			//usleep(100000);
+			usleep(100000);
 			std::string l_line;
 			//l_line = readLine();
 			l_line ="$GPGGA,082819.00,4503.93047,N,00741.21221,E,1,03,3.02,320.5,M,47.2,M,,*5A";
@@ -157,7 +157,7 @@ void GpsSocketReader::task()
 			{
 				continue;
 			}		
-			std::cout << l_line << std::endl;
+			//std::cout << l_line << std::endl;
 			m_listener->onSentenceReceived(l_line);
 		}
 		catch(exception& e){
