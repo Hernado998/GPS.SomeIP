@@ -7,12 +7,13 @@ GpsStorage::GpsStorage()
 	  m_minute(0),
 	  m_second(0),
 	  m_day(0),
+	  m_speed(0),
 	  m_fix(false)
 {
 	
 }
 
-void GpsStorage::setData(double p_latitude, double p_longitude,int p_hour,int p_minute, int p_second, int p_day, int p_month, int p_year)
+void GpsStorage::setData(double p_latitude, double p_longitude,int p_hour,int p_minute, int p_second, int p_day, int p_month, int p_year, int p_speed)
 {
 	m_latitude = p_latitude;
 	m_longitude = p_longitude;
@@ -22,6 +23,7 @@ void GpsStorage::setData(double p_latitude, double p_longitude,int p_hour,int p_
 	m_day=p_day;
 	m_month=p_month;
 	m_year=p_year;
+	m_speed=p_speed;
 }
 
 
@@ -65,4 +67,7 @@ int GpsStorage::getMonth(){
 }
 int GpsStorage::getYear(){
 	return m_year;
+}
+int GpsStorage::getSpeed(){
+	return m_speed;
 }

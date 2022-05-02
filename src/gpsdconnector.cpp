@@ -12,10 +12,10 @@ GpsdConnector::GpsdConnector(GpsStorage* p_storage)
 void GpsdConnector::init()
 {
 	gps.onUpdate += [&](){
-		m_storage->setData(gps.fix.latitude, gps.fix.longitude,gps.fix.timestamp.hour,gps.fix.timestamp.min,gps.fix.timestamp.sec,gps.fix.timestamp.day,gps.fix.timestamp.month,gps.fix.timestamp.year);
-		std::cout << "Setting data: " << gps.fix.latitude << ","<< gps.fix.longitude<<" ||| "<< gps.fix.timestamp.hour << ":" << gps.fix.timestamp.min << ":" << gps.fix.timestamp.sec<<" ||| "<< gps.fix.timestamp.day << "/" << gps.fix.timestamp.month << "/" << gps.fix.timestamp.year<< std::endl;
+		m_storage->setData(gps.fix.latitude, gps.fix.longitude,gps.fix.timestamp.hour,gps.fix.timestamp.min,gps.fix.timestamp.sec,gps.fix.timestamp.day,gps.fix.timestamp.month,gps.fix.timestamp.year,gps.fix.speed);
+		std::cout << "Setting data: " << gps.fix.latitude << ","<< gps.fix.longitude<<" ||| "<< gps.fix.timestamp.hour << ":" << gps.fix.timestamp.min << ":" << gps.fix.timestamp.sec<<" ||| "<< gps.fix.timestamp.day << "/" << gps.fix.timestamp.month << "/" << gps.fix.timestamp.year<<" ||| "<< gps.fix.speed<< std::endl;
 		std::stringstream buffer;
-		buffer << gps.fix.latitude << ","<< gps.fix.longitude<<" ||| "<< gps.fix.timestamp.hour << ":" << gps.fix.timestamp.min << ":" << gps.fix.timestamp.sec<<" ||| "<< gps.fix.timestamp.day << "/" << gps.fix.timestamp.month << "/" << gps.fix.timestamp.year<< std::endl;
+		buffer << gps.fix.latitude << ","<< gps.fix.longitude<<" ||| "<< gps.fix.timestamp.hour << ":" << gps.fix.timestamp.min << ":" << gps.fix.timestamp.sec<<" ||| "<< gps.fix.timestamp.day << "/" << gps.fix.timestamp.month << "/" << gps.fix.timestamp.year<<" ||| "<< gps.fix.speed<< std::endl;
 		BB.addToTrackingFile(buffer.str());
 	};
 	gps.onLockStateChanged += [&](bool p_valid){

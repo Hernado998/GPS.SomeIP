@@ -56,7 +56,7 @@ void GpsSomeIpClient::onMessageReceived(const std::shared_ptr<vsomeip::message> 
 	std::shared_ptr<vsomeip::payload> its_payload = _response->get_payload();
   
 	tData* l_data = (tData*) its_payload->get_data();
-	m_listener->onDataReceived(l_data->lat, l_data->lon,l_data->hour,l_data->minute,l_data->second,l_data->day,l_data->month,l_data->year);
+	m_listener->onDataReceived(l_data->lat, l_data->lon,l_data->hour,l_data->minute,l_data->second,l_data->day,l_data->month,l_data->year,l_data->speed);
 }
 
 void GpsSomeIpClient::onAvailability(vsomeip_v3::service_t _service, vsomeip_v3::instance_t _instance, bool _is_available)
