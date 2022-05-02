@@ -146,15 +146,21 @@ void GpsSocketReader::task()
 {
 	while (true)
 	{
-        usleep(100000);
-		std::string l_line;
-		l_line = readLine();
-		if (l_line.size() == 0 || l_line[0] != '$')
-		{
-			continue;
-		}		
-		std::cout << l_line << std::endl;
-		m_listener->onSentenceReceived(l_line);
+		try{
+			//usleep(100000);
+			std::string l_line;
+			l_line = readLine();
+			if (l_line.size() == 0 || l_line[0] != '$')
+			{
+				continue;
+			}		
+			std::cout << l_line << std::endl;
+			m_listener->onSentenceReceived(l_line);
+		}
+		catch(int e){
+			std::cout << "An exception occurred. Exception Nr. " << e << '\n';
+		}
+	
 	}
 }
 
