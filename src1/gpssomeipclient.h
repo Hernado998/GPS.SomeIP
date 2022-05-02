@@ -25,6 +25,7 @@ private:
 		int hour;
 		int minute;
 		int second;
+		int day,month,year;
 	};
 	
 	void onMessageReceived(const std::shared_ptr<vsomeip::message> &_response);

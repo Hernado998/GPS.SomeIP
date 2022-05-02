@@ -13,6 +13,7 @@ struct tData {
 	double lat;
 	double lon;
 	int hour,minute,second;
+	int day,month,year;
 };
 
 
@@ -50,6 +51,9 @@ void GpsService::getData(const std::shared_ptr<vsomeip_v3::message> &_request)
 	l_data.hour = m_storage->getHour();
 	l_data.minute = m_storage->getMinute();
 	l_data.second = m_storage->getSecond();
+	l_data.day = m_storage->getDay();
+	l_data.month = m_storage->getMonth();
+	l_data.year = m_storage->getYear();
 
 	its_payload->set_data((vsomeip_v3::byte_t*) &l_data, sizeof(l_data));
 	its_response->set_payload(its_payload);

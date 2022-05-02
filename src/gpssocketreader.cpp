@@ -158,7 +158,7 @@ void GpsSocketReader::task()
 				continue;
 			}		
 			//std::cout << l_line << std::endl;
-			BB.addToTrackingFile(l_line+"\n");
+			
 			m_listener->onSentenceReceived(l_line);
 		}
 		catch(exception& e){

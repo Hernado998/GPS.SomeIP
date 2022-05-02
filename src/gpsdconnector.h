@@ -6,13 +6,14 @@
 #include "nmeaparse/nmea.h"
 #include "igpssocketreaderlistener.h"
 #include <iostream>
-
+#include "bbox.h"
+using namespace bbox;
 
 class GpsdConnector : public IGpsSocketReaderListener
 {
 public:
 	GpsdConnector(GpsStorage* p_storage);
-	
+	black_box BB;
 	void init();
 	void onSentenceReceived(const std::string &p_sentence) override;
 	

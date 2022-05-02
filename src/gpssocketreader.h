@@ -4,13 +4,12 @@
 #include <string>
 #include "gps.h"
 #include "igpssocketreaderlistener.h"
-#include "bbox.h"
-using namespace bbox;
+
 class GpsSocketReader
 {
 public:
 	GpsSocketReader();
-	black_box BB;
+	
 	void init();
 	void run();
 	void setListener(IGpsSocketReaderListener* p_listener);
